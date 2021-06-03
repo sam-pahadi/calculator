@@ -1,10 +1,10 @@
-var num1, operator, mathOperator = 0, total = 0;
+var num1, operator, mathOperator = 0, total = 0,resultShown=false;
 
 function numbersPressed(event) {
     if (document.getElementById("result").innerHTML == "0") {
         document.getElementById("result").innerHTML = ""
     }
-    var operator = event.target.value;
+    var operator = event.target;
     if (operator == 12 || operator == 13 || operator == 14) {
         num1 = document.getElementById("result").innerHTML;
         document.getElementById("result").innerHTML = "0";
@@ -23,6 +23,7 @@ function numbersPressed(event) {
                 break;
         }
         document.getElementById("result").innerHTML = total;
+        resultShown=true;
     }
     else if (operator == 11) {
         document.getElementById("result").innerHTML = "0";
@@ -30,6 +31,12 @@ function numbersPressed(event) {
         total = 0;
     }
     else {
-        document.getElementById("result").innerHTML += event.target.value;
+        if(resultShown){
+            document.getElementById("result").innerHTML = event.target.value;
+            resultShown=false
+        }else{
+            document.getElementById("result").innerHTML += event.target.value;
+        }
+        
     }
 }
